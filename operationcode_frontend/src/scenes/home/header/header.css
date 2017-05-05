@@ -1,0 +1,33 @@
+
+.header {
+  display: flex;
+  height: 80px;
+  align-items: center;
+}
+.logo {
+  height:80px;
+  flex: 1 40%;
+  margin-left:80px;
+  align-items: center;
+  display:flex;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 60%;
+  margin-right:8vw;
+}
+.nav a {
+  text-decoration: none;
+  color: #F7F7F7;
+  font-size:16px;
+}
+.logo img {
+  height: 50px;
+}
+
+@media only screen and (max-device-width: 768px) {
+  .logo {
+    margin: 0;
+  }
+}

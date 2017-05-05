@@ -1,271 +1,97 @@
+# Polymer App Toolbox - Starter Kit
 
-# OperationCode Frontend
-
-This is OperationCode.org's repository for their new front-end implementation using React.js
-
-## Table Of Contents
-- [Technologies](#technologies)
-- [Getting Started](#getting-started)
-  - [Brush up on Development Tools](#brush-up-on-development-tools)
-    - [Git and basic Command Line](#git-and-basic-command-line)
-    - [NodeJS](#nodejs)
-  - [Development Environment](#development-environment)
-  - [Mac OSX](#mac-osx)
-    - [Update your mac](#update-your-mac)
-    - [Xcode Command Line Tools](#xcode-command-line-tools)
-    - [Homebrew](#homebrew)
-    - [Git](#git)
-    - [NodeJS](#nodejs-1)
-  - [Windows](#windows)
-    - [Git](#git-1)
-    - [NodeJS](#nodejs-2)
-  - [Developing Operation Code Frontend](#developing-operation-code-frontend)
-    - [File Structure](#file-structure)
-    - [Scenes / Component Structure](#scenes--component-structure)
-      - [Components](#components)
-      - [Styles](#styles)
-    - [Running the development Server](#running-the-development-server)
-  - [Production Builds](#production-builds)
-    - [Static Site](#static-site)
-    - [Docker Container](#docker-container)
-- [Resources](#resources)
-- [Contribute](#contribute)
-- [License](#license)
+[![Build Status](https://travis-ci.org/PolymerElements/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/PolymerElements/polymer-starter-kit)
 
-## Technologies
+This template is a starting point for building apps using a drawer-based
+layout. The layout is provided by `app-layout` elements.
 
-- [NodeJS](https://www.nodejs.org/) - Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
-- [React.js](https://facebook.github.io/react/) - Facebook's popular JavaScript front-end framework.
-- [Create-React-App](https://github.com/facebookincubator/create-react-app) - Create React App was initially used to handle boilerplate.  We have since Ejected and customized some of the scripts.
-- [Webpack](https://webpack.js.org/) - Webpack acts as a module bundler and almost entirely dispenses with the need for a task runner, like Grunt or Gulp.
-- [Babel](https://babeljs.io/) - JavaScript compiler to unify all the different versions of JS that may have been used or will be used in the future.
-- [Yarn](https://yarnpkg.com/) - Facebook's open source JavaScript package manager. There are a few differences between Yarn and Node Package Mangaer (npm), but the main differentiation is that Yarn locks dependencies so your project doesn't break when external resources change their code.
-- [CSS Modules](https://css-tricks.com/css-modules-part-1-need/) - CSS Modules allow us to encapsulate CSS with components.
+This template, along with the `polymer-cli` toolchain, also demonstrates use
+of the "PRPL pattern" This pattern allows fast first delivery and interaction with
+the content at the initial route requested by the user, along with fast subsequent
+navigation by pre-caching the remaining components required by the app and
+progressively loading them on-demand as the user navigates through the app.
 
-## Getting Started
+The PRPL pattern, in a nutshell:
 
-### Brush up on Development Tools
+* **Push** components required for the initial route
+* **Render** initial route ASAP
+* **Pre-cache** components for remaining routes
+* **Lazy-load** and progressively upgrade next routes on-demand
 
-#### Git and basic Command Line
+### Migrating from Polymer Starter Kit v1?
 
-You will be working with Git and Github to manage source code.  Understanding the basics and how to set things up will be helpful.
-- [Learn about Git and Github](https://help.github.com/articles/git-and-github-learning-resources/)
-- [Github for windows](https://mva.microsoft.com/en-US/training-courses/github-for-windows-users-16749?l=KTNeW39wC_6006218965)
-- [Github Command Line Training](https://services.github.com/on-demand/github-cli)
+[Check out our blog post that covers what's changed in PSK2 and how to migrate!](https://www.polymer-project.org/1.0/blog/2016-08-18-polymer-starter-kit-or-polymer-cli.html)
 
-Getting comfortable with the Bash Shell will be helpful for both Windows and Mac.  You may also want to learn about the Windows Command Prompt if you are using Windows.
-- For Mac or Linux - [Learn console commands](https://learnpythonthehardway.org/book/appendixa.html)
-- For Windows - [Learn Windows Command Prompt](https://www.youtube.com/watch?v=MBBWVgE0ewk)
+### Quickstart
 
-#### NodeJS
+We've recorded a Polycast to get you up and running with PSK2 fast!
 
-The OperationCode front end runs on NodeJS.  Learning the basics of NodeJS will be helpful.
-- [NodeJS Tutorial](https://www.tutorialspoint.com/nodejs/)
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=HgJ0XCyBwzY&list=PLNYkxOF6rcIDdS7HWIC_BYRunV6MHs5xo&index=10">
+    <img src="https://img.youtube.com/vi/HgJ0XCyBwzY/0.jpg" alt="Polymer Starter Kit 2 video">
+  </a>
+</p>
 
-### Development Environment
+### Setup
 
-  You will need a few technologies installed in order to build and run this application.  The installation of these is not always straightforward, but we will do our best to guide you through the process.
+##### Prerequisites
 
-  The installation will depend on which operating system you are running.
+First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
+[npm](https://www.npmjs.com) (we assume you have pre-installed [node.js](https://nodejs.org)).
 
-### Mac OSX
+    npm install -g polymer-cli
 
-#### Update your mac
+##### Initialize project from template
 
-  In order to run the latest version of everything, you will need to be on the latest version of Mac OSX.  It's entirely possible to get everything working without updating, but this is the easiest and recommended approach.
-  - [Apple instructions to Upgrade Mac OSX](http://www.apple.com/osx/how-to-upgrade/)
+    mkdir my-app
+    cd my-app
+    polymer init starter-kit
 
-#### Xcode Command Line Tools
+### Start the development server
 
-  If you have xcode installed ensure that it is updated to the latest version through the app store.  The full xcode package is not required for the command line tools.
+This command serves the app at `http://localhost:8080` and provides basic URL
+routing for the app:
 
-  Running the following in your terminal window should prompt you to install the xcode command line tools if you don't already have it installed.
-  ```console
-  gcc
-  ```
-  You can verify installation with the command below, you should see similar output:
-  ```console
-    gcc --version
-    Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
-    Apple LLVM version 6.0 (clang-600.0.54) (based on LLVM 3.5svn)
-    Target: x86_64-apple-darwin14.0.0
-    Thread model: posix
-  ```
-  - [A guide to installing xcode command line tools](http://railsapps.github.io/xcode-command-line-tools.html)
-
-#### Homebrew
-
-  - [Homebrew website](https://brew.sh/)
-  - Paste the code below into a terminal window to install homebrew.
-  ```console
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  ```
-
-#### Git
+    polymer serve --open
 
-The easiest way to install git is with homebrew.
-```console
-brew install git
-```
+### Build
 
-You can also install Github Desktop for the Graphical interface into github.  There is no need to install the Command Line tools if you installed git with homebrew.
-- [Github Desktop](https://desktop.github.com/)
+This command performs HTML, CSS, and JS minification on the application
+dependencies, and generates a service-worker.js file with code to pre-cache the
+dependencies based on the entrypoint and fragments specified in `polymer.json`.
+The minified files are output to the `build/unbundled` folder, and are suitable
+for serving from a HTTP/2+Push compatible server.
 
-#### NodeJS
+In addition the command also creates a fallback `build/bundled` folder,
+generated using fragment bundling, suitable for serving from non
+H2/push-compatible servers or to clients that do not support H2/Push.
 
-You can install NodeJS a few different ways.  Again, the easiest way to install it is with homebrew
-```console
-brew install node
-```
-
-Another option is to install Node Version Manager, this is helpful if you need to use multiple versions of node for different projects.
-- [Node Version Manager](https://github.com/creationix/nvm)
-
-n is another project that manages node versions with possibly an easier install and less maintenance.
--[n](https://github.com/tj/n)
-
-The other option is to install the nodejs package from the official website
-- [Nodejs Download Page](https://nodejs.org/en/download/)
-
-### Windows
-
-#### Git
-
-You have many options for getting Git on Windows.  We recommend using Git for Windows as it gives you a bash shell which can be very powerful and help you start to learn linux commands.
-
-- [Git For Windows](https://git-scm.com/download/win)
-
-Execute the Installer and follow the prompts.  Run Git and included tools from Windows Command Prompt is handy, but beware you will be replacing a few windows commands that you probably don't use anyways.
-
-You can also install Github Desktop for a GUI Interface to Github.  If you do this you don't want to install the Command Line tools, as Git For Windows is a more recent version.
-
-- [Github for Desktop](https://desktop.github.com/)
-
-#### NodeJS
-
-There are many ways and guides to install NodeJS on Windows.  The resources below are from Microsoft.
-- [NodeJS On Windows Guidelines](https://github.com/Microsoft/nodejs-guidelines)
-- [Configuring your Windows development environment for NodeJS](https://github.com/Microsoft/nodejs-guidelines/blob/master/windows-environment.md#configuring-your-windows-development-environment)
+    polymer build
 
-One way to install NodeJS for windows is to simply download and execute the MSI Package from the official downloads page.
-- [Nodejs Download Page](https://nodejs.org/en/download/)
+### Preview the build
 
-To test the installation open up a Command Prompt or Git Bash and enter the following commands:
-```console
-node --version
-npm --version
-```
-If your installation was sucessful you will get the versions of node and npm that were installed.
+This command serves the minified version of the app at `http://localhost:8080`
+in an unbundled state, as it would be served by a push-compatible server:
 
-### Developing Operation Code Frontend
+    polymer serve build/unbundled
 
-#### File Structure
+This command serves the minified version of the app at `http://localhost:8080`
+generated using fragment bundling:
 
-```
-├── config (Build Configuration Files)
-│   ├── jest
-│   ├── env.js
-│   ├── paths.js
-│   ├── polyfills.js
-│   ├── webpack.config.dev.js
-│   └── webpack.config.prod.js
-├── public (Static files to be included in the build.  Icon files excluded for brevity)
-│   ├── favicon.ico
-│   ├── index.html
-├── scripts (Build Scripts)
-│   ├── build.js
-│   ├── start.js
-│   └── test.js
-├── src
-│   ├── images
-│   ├── scenes (see scenes section below)
-│   ├── shared (Shared React Components and Services)
-│   ├── styles (Shared Styles to be used with CSS Modules Composition)
-│   ├── App.js
-│   ├── App.test.js
-│   ├── index.css
-│   └── index.js
-├── Dockerfile
-├── LICENSE
-├── README.md
-├── docker-compose.yml
-├── index.html
-├── package.json
-├── server.js
-└── yarn.lock
+    polymer serve build/bundled
 
-```
+### Run tests
 
-#### Scenes / Component Structure
+This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
+against the browsers currently installed on your machine:
 
-The idea of scenes were inspired by this post:
-- [How to better organize your react applications](https://medium.com/@alexmngn/how-to-better-organize-your-react-applications-2fd3ea1920f1)
+    polymer test
 
-Scenes give us the ability to have different views of our application.  For example, we could have a home page view, or a mentors page view with a different navigation menu.
+### Adding a new view
 
-##### Components
-Components should be nested in a scene, or within another component.  The idea is that a component will be declared at the level that it will be shared.  If a component can be shared across the whole site, it should go in the /shared folder.
-
-##### Styles
-We are using CSS modules for styling.  Each components styles should be next to the component, and contain all the information to render that component.  React favors [Composition over Inheritance](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
-
-```
-├── scenes
-│   └── home
-│       ├── about
-│       │   └── about.js
-│       ├── families
-│       │   ├── facts
-│       │   └── jumboQuote
-│       ├── footer
-│       │   ├── footer.css
-│       │   └── footer.js
-│       ├── header
-│       │   ├── logo
-│       │   ├── topNav
-│       │   ├── header.css
-│       │   └── header.js
-│       ├── landing
-│       │   ├── landing.css
-│       │   └── landing.js
-│       ├── home.css
-│       └── home.js
-```
-
-#### Running the development Server
-
-- `npm install -g yarn` - Install Yarn Globally
-
-- `yarn install` - Install Package dependencies.  Be sure to run this each time you pull from Github to update the dependencies.
-
-- `yarn start` - Start the development server
-
-### Production Builds
-
-#### Static Site
-
-- `yarn run build` - This bundles the application into static files for production (minimization, post-processing, etc.)
-
-- `yarn test` - This starts the test runner.
-
-- `yarn start:server` - Runs express js serving production static files.
-
-#### Docker Container
-
-- `docker-compose up -d --build` - Builds and starts the Docker Container listening port 80.
-
-## Resources
-
-- [Learning React With Create-React-App](https://medium.com/@diamondgfx/learning-react-with-create-react-app-part-1-a12e1833fdc)
-- [What Is Webpack?](https://survivejs.com/webpack/what-is-webpack/)
-- [Routed React with Express.js and Docker](https://medium.com/@patriciolpezjuri/using-create-react-app-with-react-router-express-js-8fa658bf892d)
-- [React Lifecycle Methods - How And When To Use Them](https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1)
-- [Let's test React components with TDD< Mocha, Chai, and jsdom](https://medium.freecodecamp.com/simple-react-testing-d9e25ec87e2)
-
-## Contribute
-
-[Operation Code Contribution Guide](https://github.com/OperationCode/START_HERE)
-
-## License
-
-[MIT](LICENSE) © OperationCode
+You can extend the app by adding more views that will be demand-loaded
+e.g. based on the route, or to progressively render non-critical sections of the
+application. Each new demand-loaded fragment should be added to the list of
+`fragments` in the included `polymer.json` file. This will ensure those
+components and their dependencies are added to the list of pre-cached components
+and will be included in the `bundled` build.
