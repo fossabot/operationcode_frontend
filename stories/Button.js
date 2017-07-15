@@ -10,18 +10,19 @@ const buttonStyles = {
   margin: 10,
 };
 
-const Button = ({ children, onClick }) => (
+const Button = ({ children, submit }) => (
   <button
     style={buttonStyles}
-    onClick={onClick}
+    onClick={submit}
+    onKeyDown={submit}
   >
     {children}
   </button>
 );
 
 Button.propTypes = {
-  children: React.PropTypes.string.isRequired,
-  onClick: React.PropTypes.func,
+  children: React.PropTypes.string,
+  submit: React.PropTypes.func,
 };
 
 export default Button;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Section from 'shared/components/section/section';
-import SchoolCard from 'shared/components/schoolCard/schoolCard';
-import FormInput from 'shared/components/form/formInput/formInput';
+import Section from '../../../../shared/components/section/section';
+import SchoolCard from '../../../../shared/components/schoolCard/schoolCard';
+import FormInput from '../../../../shared/components/form/formInput/formInput';
 import styles from './stateSortedSchools.css';
 import stateCodes from '../stateCodes.json';
 

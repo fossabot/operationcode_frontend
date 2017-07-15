@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaSlack, FaHome } from 'react-icons/lib/fa';
-import Section from 'shared/components/section/section';
+import Section from '../../../shared/components/section/section';
 import styles from './contact.css';
 
 

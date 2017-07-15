@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import LinkButton from 'shared/components/linkButton/linkButton';
-import Section from 'shared/components/section/section';
+import LinkButton from '../../../shared/components/linkButton/linkButton';
+import Section from '../../../shared/components/section/section';
 import ApprovedSchools from './approvedSchools/approvedSchools';
 import PartnerSchools from './partnerSchools/partnerSchools';
 import OnlineSchools from './onlineSchools/onlineSchools';

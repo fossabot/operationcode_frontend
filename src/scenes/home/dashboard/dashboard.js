@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
-import Section from 'shared/components/section/section';
+import Section from '../../../shared/components/section/section';
 import styles from './dashboard.css';
 
 class Dashboard extends Component {

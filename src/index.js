@@ -5,8 +5,7 @@ import App from './App';
 import './shared/styles/normalize.global.css';
 import './shared/styles/react-table.global.css';
 import './index.css';
+import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
