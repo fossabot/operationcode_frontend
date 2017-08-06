@@ -11,14 +11,7 @@ class FormButton extends Component {
       [`${this.props.className}`]: this.props.className
     });
     return (
-      <button
-        type="button"
-        className={classes}
-        onClick={this.props.onClick}
-        disabled={this.props.disabled}
-      >
-        {this.props.text}
-      </button>
+      <button type="button" className={classes} onClick={this.props.onClick}>{this.props.text}</button>
     );
   }
 }
@@ -27,15 +20,13 @@ FormButton.propTypes = {
   theme: PropTypes.string,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
+  className: PropTypes.string
 };
 
 FormButton.defaultProps = {
   theme: 'blue',
   onClick: null,
-  className: null,
-  disabled: false,
+  className: null
 };
 
 export default FormButton;
